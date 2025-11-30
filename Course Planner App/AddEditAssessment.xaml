@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Course_Planner_App.AddEditAssessment"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="AddEditAssessment"
+             BackgroundColor="DarkGray">
+    <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Padding="0,20,0,0">
+        <Label x:Name="AssessmentName" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Assessment</Label>
+
+        <!--Name-->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Assessment Name</Label>
+            <Entry x:Name="AssessmentNameInput" BackgroundColor="White" WidthRequest="180" TextColor="Black"/>
+        </HorizontalStackLayout>
+        
+        <!--Type-->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Assessment Type</Label>
+            <Picker SelectedIndexChanged="ShowExamTypes" x:Name="AssessmentTypeInput" BackgroundColor="White" WidthRequest=" 180" TextColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Assignment</x:String>
+                        <x:String>Exam</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </HorizontalStackLayout>
+        
+        <!--Exam Type-->
+        <HorizontalStackLayout Spacing="20" IsVisible="False" x:Name="ExamTypeSection" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Assessment Name</Label>
+            <Picker x:Name="ExamTypeInput" BackgroundColor="White" TextColor="Black" WidthRequest="180">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Quiz</x:String>
+                        <x:String>Test</x:String>
+                        <x:String>Project</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </HorizontalStackLayout>
+
+        <!--Class-->
+        <HorizontalStackLayout Spacing="153" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Class</Label>
+            <Picker ItemsSource="{Binding}" x:Name="ClassInput" BackgroundColor="White" WidthRequest="180" TextColor="Black"/>
+        </HorizontalStackLayout>
+        
+        <!--Due Date-->
+        <HorizontalStackLayout Spacing="107" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Due Date</Label>
+            <DatePicker x:Name="DueDateInput" BackgroundColor="White" WidthRequest="180" TextColor="Black"/>
+        </HorizontalStackLayout>
+
+        <!--Notifs-->
+        <HorizontalStackLayout Spacing="125" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Enable Notifications</Label>
+            <Switch x:Name="NotifsInput"/>
+        </HorizontalStackLayout>
+
+        <!--Buttons-->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">            
+            <Button Clicked="OnSave" Text="Save" WidthRequest="150" BackgroundColor="Black" TextColor="White"/>
+            <Button Clicked="OnCancel" Text="Cancel" WidthRequest="150" BackgroundColor="Black" TextColor="White"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

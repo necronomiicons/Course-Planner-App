@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Course_Planner_App.AddEditClass"
+             Title="AddEditClass"
+             BackgroundColor="DarkGray">
+
+    <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Padding="0,20,0,0">
+        <Label x:Name="ClassName"  HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Class</Label>
+
+        <!--Name-->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Class Name</Label>
+            <Entry x:Name="ClassNameInput" TextColor="Black" BackgroundColor="White" WidthRequest="200"/>
+        </HorizontalStackLayout>
+
+        <!--Buttons-->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Clicked="OnSave" Text="Save" WidthRequest="150" BackgroundColor="Black" TextColor="White"/>
+            <Button Clicked="OnCancel" Text="Cancel" WidthRequest="150" BackgroundColor="Black" TextColor="White"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

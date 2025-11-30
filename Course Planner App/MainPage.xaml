@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Course_Planner_App.MainPage"
+             BackgroundColor="DarkGray">
+
+    <VerticalStackLayout>
+
+        <!-- Class Table-->
+        <Grid WidthRequest="400">
+            <VerticalStackLayout Margin="15,15,15,15" HorizontalOptions="Center">
+                
+                <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Classes</Label>
+                <!-- Table Header -->
+                <HorizontalStackLayout Spacing="2.5" BackgroundColor="Black" Padding="2.5" HorizontalOptions="Fill">                    
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="180">Class</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="182">Associated Assignments</Label>
+                </HorizontalStackLayout>
+
+                <!--Table Items-->
+                <ListView ItemsSource="{Binding}" x:Name="ClassesList" BackgroundColor="White" HeightRequest="100" Margin="0,0,0,20">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>                                
+                                <HorizontalStackLayout BackgroundColor="Gray" Padding="2.5,0,2.5,2.5">
+                                    <Label Text="{Binding className}" Padding="10" BackgroundColor="White" WidthRequest="180" TextColor="Black"/>
+                                    <Label Text="{Binding activeAssignments}" Padding="10" BackgroundColor="White" WidthRequest="185" TextColor="Black" HorizontalTextAlignment="End"/>
+                                 </HorizontalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--Add Edit Delete Buttons-->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                    <Button Clicked="OnAddClass" Text="Add" BackgroundColor="Black" TextColor="White" WidthRequest="100"/>
+                    <Button Clicked="OnEditClass" Text="Edit" BackgroundColor="Black" TextColor="White" WidthRequest="100"/>
+                    <Button Clicked="OnDeleteClass" Text="Delete" BackgroundColor="Black" TextColor="White" WidthRequest="100"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <BoxView BackgroundColor="Black" HeightRequest="2" WidthRequest="500" Margin="0,20,0,0"/>
+
+        <!--Assessment Table-->
+        <Grid WidthRequest="500">
+            <VerticalStackLayout Margin="15,15,15,15">
+
+                <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium">Assessments</Label>
+                
+                <!--Nav Bar-->
+                <HorizontalStackLayout Spacing="20" Padding="0,20,0,20" HorizontalOptions="Center" >
+                    <Entry x:Name="SearchText" TextChanged="OnSearchTextCleared" BackgroundColor="White" TextColor="Black" WidthRequest="150" Placeholder="Search for an assessment"/>
+                    <Button Clicked="OnSearch" Text="Search" BackgroundColor="Black" TextColor="White"/>
+                    <Picker SelectedIndexChanged="OnSort" BackgroundColor="White" TextColor="Black" WidthRequest="90" x:Name="SortByPicker">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>All</x:String>
+                                <x:String>Today</x:String>
+                                <x:String>This week</x:String>
+                                <x:String>This month</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </HorizontalStackLayout>
+                
+                
+                <!-- Table Header -->
+                <HorizontalStackLayout WidthRequest="375" Spacing="2.5" BackgroundColor="Black" Padding="2.5" HorizontalOptions="Fill">
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="80" FontSize="10">Assessment</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="80" FontSize="10">Type</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="60" FontSize="10">Class</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="55" FontSize="10">Due</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="85" FontSize="10">Complete</Label>
+                </HorizontalStackLayout>
+
+                <!--Table Items-->
+                <ListView ItemsSource="{Binding}" WidthRequest="375" x:Name="AssessmentsList" HeightRequest="100" BackgroundColor="White" Margin="0,0,0,20">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                
+                            <HorizontalStackLayout BackgroundColor="Gray" Padding="2.5,0,2.5,2.5" HorizontalOptions="Center">
+                                <Label Text="{Binding assessmentName}" BackgroundColor="White" Padding="10" WidthRequest="80" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding GetAssessmentType}" BackgroundColor="White" Padding="10" WidthRequest="80" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding GetClassName}" BackgroundColor="White" Padding="10" WidthRequest="60" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding dueDate}" BackgroundColor="White" Padding="10" WidthRequest="65" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                    <Label IsVisible="{Binding Incomplete}" Text="Incomplete" FontAttributes="Italic" BackgroundColor="White" Padding="10" WidthRequest="85" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                    <Label IsVisible="{Binding complete}" Text="Done" FontAttributes="Italic" BackgroundColor="White" Padding="10" WidthRequest="85" TextColor="Black" FontSize="9" VerticalTextAlignment="Center"/>
+                                
+                            </HorizontalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--Add Edit Delete Buttons-->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                    <Button Clicked="OnAddAssessment" Text="Add" BackgroundColor="Black" TextColor="White" WidthRequest="80"/>
+                    <Button Clicked="OnEditAssessment" Text="Edit" BackgroundColor="Black" TextColor="White" WidthRequest="80"/>
+                    <Button Clicked="OnDeleteAssessment" Text="Delete" BackgroundColor="Black" TextColor="White" WidthRequest="80"/>
+                    <Button Clicked="OnCompleteAssessment" FontSize="10" Text="Complete" BackgroundColor="Black" TextColor="White" WidthRequest="80"/>
+                </HorizontalStackLayout>
+                
+                <!--Late Assignments Button-->
+                <Button Clicked="OnLateReport" Text="Late Assignments" BackgroundColor="Black" TextColor="White" WidthRequest="340" Margin="0,20,0,0"/>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </VerticalStackLayout>
+
+</ContentPage>

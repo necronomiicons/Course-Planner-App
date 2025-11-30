@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Course Planner App/.vs/Course Planner App
+/Course Planner App/bin/Debug/net8.0-windows10.0.19041.0/win10-x64
+/Course Planner App/obj

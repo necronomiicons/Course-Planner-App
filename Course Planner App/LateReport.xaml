@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Course_Planner_App.LateReport"
+             Title="LateReport"
+             BackgroundColor="DarkGray">
+    <VerticalStackLayout>
+
+        <!--Assessment Table-->
+        <Grid WidthRequest="525">
+            <VerticalStackLayout Margin="15,15,15,15">
+
+                <Label HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,0,0,20">Late Assignments</Label>
+
+                <!--Sort Mode-->
+                <Picker SelectedIndexChanged="OnSort" BackgroundColor="White" TextColor="Black" Margin="0,0,0,20" WidthRequest="150" x:Name="SortByPicker">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>This month</x:String>
+                            <x:String>Last 3 months</x:String>
+                            <x:String>Last 6 months</x:String>
+                            <x:String>Last 12 months</x:String>
+                            <x:String>All</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <!-- Table Header -->
+                <HorizontalStackLayout Spacing="2.5" BackgroundColor="Black" Padding="2.5" HorizontalOptions="Center">
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="80" FontSize="10">Assessment</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="50" FontSize="10">Type</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="50" FontSize="10">Class</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="50" FontSize="10">Due</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="75" FontSize="10">Completed</Label>
+                    <Label BackgroundColor="Gray" Padding="10" WidthRequest="61" FontSize="10">Overdue</Label>
+                </HorizontalStackLayout>
+
+                <ListView ItemsSource="{Binding}" x:Name="LateList">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <HorizontalStackLayout BackgroundColor="Gray" Padding="2.5,0,2.5,2.5" HorizontalOptions="Center" HeightRequest="50">
+                                    <Label Text="{Binding assessmentName}" BackgroundColor="White" Padding="10" WidthRequest="80" TextColor="Black" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> 
+                                    <Label Text="{Binding assessmentType}" BackgroundColor="White" Padding="10" WidthRequest="65" TextColor="Black" FontSize="8" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> 
+                                    <Label Text="{Binding GetClassName}" BackgroundColor="White" Padding="10" WidthRequest="50" TextColor="Black" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> 
+                                    <Label Text="{Binding dueDate}" BackgroundColor="White" Padding="10" WidthRequest="50" TextColor="Black" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> 
+                                    <Label Text="{Binding completionDate}" BackgroundColor="White" Padding="10" WidthRequest="75" TextColor="Black" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding GetDaysLate}" BackgroundColor="White" Padding="10" WidthRequest="61" TextColor="Black" FontSize="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                                </HorizontalStackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--Test data-->
+
+                <!--Back Button-->
+                <Button Clicked="OnBack" Text="Back" BackgroundColor="Black" TextColor="White" WidthRequest="340" Margin="0,20,0,0"/>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
